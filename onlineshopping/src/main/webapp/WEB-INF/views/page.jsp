@@ -32,7 +32,7 @@
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
 <!-- Bootstrap Solar theme CSS -->
-<link href="${css}/bootstrap-solar-theme.css" rel="stylesheet">
+<link href="${css}/bootstrap-flaty-theme.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -68,6 +68,11 @@
 			<!-- Load only when user clicks contact-->
 			<c:if test="${userClickContact == true}">
 				<%@include file="contact.jsp"%>
+			</c:if>
+			
+			<!-- Load only when user clicks Products-->
+			<c:if test="${userClickCategoryProducts == true or userClickAllProducts == true}">
+				<%@include file="listProducts.jsp"%>
 			</c:if>
 		</div>
 		

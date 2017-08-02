@@ -13,14 +13,22 @@
 	</properties>
 	<dependencies>
 
+		<!-- Linking backend project -->
+		<dependency>
+			<groupId>net.omar</groupId>
+			<artifactId>shoppingbackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+
 		<!-- Java EE API -->
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>${javaee.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -28,8 +36,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- Spring -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
