@@ -26,6 +26,7 @@
 
 <script type="text/javascript">
 	window.menu = '${title}';
+	window.contextRoot='${contextRoot}'; 
 </script>
 
 <!-- Bootstrap Core CSS -->
@@ -33,6 +34,9 @@
 
 <!-- Bootstrap Solar theme CSS -->
 <link href="${css}/bootstrap-flaty-theme.css" rel="stylesheet">
+
+<!-- DataTables Bootstrap -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -85,6 +89,12 @@
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+	
+		<!-- datatable plugin-->
+		<script src="${js}/jquery.dataTables.js"></script>
+	
+		<!-- datatable plugin Bootstrap JavaScript -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
 
 		<!-- Self Coded Java Script -->
 		<script src="${js}/myapp.js"></script>

@@ -72,27 +72,27 @@ public class CategoryTestCase {
 		category.setDescription("This is a description for Mobile");
 		category.setImageURL("CAT_1.png");
 		
-		assertEquals("Successfully added a category inside the table!", true, categoryDAO.add(category));		
+		assertEquals("Error when adding a category", true, categoryDAO.add(category));		
 		
 		category = new Category();
 		category.setName("Television");
 		category.setDescription("This is a description for Television");
 		category.setImageURL("CAT_2.png");
 		
-		assertEquals("Successfully added a category inside the table!", true, categoryDAO.add(category));		
+		assertEquals("Error when adding a category", true, categoryDAO.add(category));		
 
 		
 		//fetching and updating the category
 		category = categoryDAO.get(2);
 		category.setName("TV");
-		assertEquals("Successfully updated a single Category", true, categoryDAO.update(category));
+		assertEquals("Error when updating a category", true, categoryDAO.update(category));
 		
 		
 		//Delete the category
-		assertEquals("Successfully deleted a single Category", true, categoryDAO.delete(category));
+		assertEquals("Error when deleting a category", true, categoryDAO.delete(category));
 		
 		//fetch the list
-		assertEquals("Successfully fetched the list of categories from the table", 1, categoryDAO.list().size());
+		assertEquals("Error when reading the categories", 1, categoryDAO.list().size());
 		
 	}
 	
