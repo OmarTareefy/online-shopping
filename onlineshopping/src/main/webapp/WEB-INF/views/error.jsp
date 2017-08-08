@@ -4,8 +4,6 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <spring:url var="css" value="/resources/css" />
-<spring:url var="js" value="/resources/js" />
-<spring:url var="images" value="/resources/images" />
 
 
 
@@ -21,8 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>Online Shopping - ${title}</title>
 
 <script type="text/javascript">
 	window.menu = '${title}';
@@ -47,64 +43,57 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+<title>Online Shopping - ${title}</title>
 
 </head>
 
 <body>
 	<div class="wrapper">
-		<!-- Navigation comes here-->
-
-		<%@include file="./shared/navbar.jsp"%>
-
-
+		
+		
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        	<div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	                <a class="navbar-brand" href="${contextRoot}/home" >Home</a>
+	            </div>
+            </div>
+         </nav>
+         
+         
 		<!-- Page Content -->
 		<div class="content">
-			<!-- Loading the home content -->
-			<c:if test="${userClickHome == true}">
-				<%@include file="home.jsp"%>
-			</c:if>
+		
+			<div class="container">
 
-			<!-- Load only when user clicks about-->
-			<c:if test="${userClickAbout == true}">
-				<%@include file="about.jsp"%>
-			</c:if>
-
-			<!-- Load only when user clicks contact-->
-			<c:if test="${userClickContact == true}">
-				<%@include file="contact.jsp"%>
-			</c:if>
-			
-			<!-- Load only when user clicks Products-->
-			<c:if test="${userClickCategoryProducts == true or userClickAllProducts == true}">
-				<%@include file="listProducts.jsp"%>
-			</c:if>
-			
-			<!-- Load only when user clicks on a single Product-->
-			<c:if test="${userClickShowProduct == true}">
-				<%@include file="singleProduct.jsp"%>
-			</c:if>
-			
+				<div class="row">
+				
+					<div class="col-xs-12">
+						
+						
+						<div class="jumbotron">
+						
+							<h1>${errorTitle}</h1>
+							<hr/>
+							
+							<blockquote style="word-wrap:break-word">
+							
+								${errorDescription}
+							
+							</blockquote>
+						</div>
+						
+						
+					</div>
+				</div>
+				
+			</div>
 			
 		</div>
 		
-		
-		<!-- Footer comes here -->
 		<%@include file="./shared/footer.jsp"%>
 
-		<!-- jQuery -->
-		<script src="${js}/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="${js}/bootstrap.min.js"></script>
-	
-		<!-- datatable plugin-->
-		<script src="${js}/jquery.dataTables.js"></script>
-	
-		<!-- datatable plugin Bootstrap JavaScript -->
-		<script src="${js}/dataTables.bootstrap.js"></script>
-
-		<!-- Self Coded Java Script -->
-		<script src="${js}/myapp.js"></script>
 	</div>
 </body>
 

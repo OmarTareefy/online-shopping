@@ -66,10 +66,11 @@ public class CategoryTestCase {
 	@Test
 	public void testCRUDCategory(){
 		
+		
 		//Add operation
 		category = new Category();
-		category.setName("Laptop");
-		category.setDescription("This is a description for Mobile");
+		category.setName("Anas");
+		category.setDescription("This is a description for Anas");
 		category.setImageURL("CAT_1.png");
 		
 		assertEquals("Error when adding a category", true, categoryDAO.add(category));		
@@ -83,7 +84,7 @@ public class CategoryTestCase {
 
 		
 		//fetching and updating the category
-		category = categoryDAO.get(2);
+		category = categoryDAO.get(34);
 		category.setName("TV");
 		assertEquals("Error when updating a category", true, categoryDAO.update(category));
 		
