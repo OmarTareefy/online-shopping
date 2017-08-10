@@ -13,7 +13,10 @@ $(function() {
 	case 'All Products':
 		$('#listProducts').addClass('active');
 		break;
-
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
+		
 	default:
 		if (menu == 'Home')
 			break;
@@ -29,7 +32,7 @@ $(function() {
 	// execute the below code only when we have this table
 	if ($table.length) {
 		// console.log('Inside the table');
-		console.log('Inside the table');
+		//console.log('Inside the table');
 		var jsonUrl = '';
 		if (window.categoryId == '') {
 			jsonUrl = window.contextRoot + '/json/data/all/products'

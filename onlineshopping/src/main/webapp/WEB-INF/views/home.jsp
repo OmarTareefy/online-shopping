@@ -6,7 +6,7 @@
 		<div class="col-md-3">
 			<%@include file="./shared/sidebar.jsp"%>
 		</div>
-
+<!--
 		<div class="col-md-9">
 
 			<div class="row carousel-holder">
@@ -188,7 +188,7 @@
 			</div>
 
 		</div>
-
+//-->
 	</div>
 
 </div>
