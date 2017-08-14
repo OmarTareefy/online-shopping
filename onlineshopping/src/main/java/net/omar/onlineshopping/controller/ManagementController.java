@@ -2,6 +2,7 @@ package net.omar.onlineshopping.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.omar.onlineshopping.util.FileUploadUtility;
+import net.omar.onlineshopping.validator.ProductValidator;
 import net.omar.shoppingbackend.dao.CategoryDAO;
 import net.omar.shoppingbackend.dao.ProductDAO;
 import net.omar.shoppingbackend.dto.Category;
@@ -59,7 +62,12 @@ public class ManagementController {
 	
 	//handling product submission
 	@RequestMapping(value = "/products", method=RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute ("product")Product mProduct, BindingResult results, Model model) {
+	public String handleProductSubmission(@Valid @ModelAttribute ("product")Product mProduct
+			, BindingResult results, Model model, HttpServletRequest request) {
+		
+		new ProductValidator().validate(mProduct, results);
+		
+		
 		if(results.hasErrors()) {
 			
 			//this model parameter is to pass anything to the view
@@ -75,6 +83,10 @@ public class ManagementController {
 		
 		//Create a new product record in the database
 		productDAO.add(mProduct);
+		
+		if(!mProduct.getFile().getOriginalFilename().equals("")){
+			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+		}
 		
 		return "redirect:/manage/products?operation=product";
 	}
