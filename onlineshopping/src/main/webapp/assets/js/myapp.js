@@ -244,7 +244,43 @@ $(function() {
 	}
 	
 	///////////////////////////////////////
+	// Validation code for Category
+	var $categoryForm = $('#categoryForm');
 	
+	if ($categoryForm.length) {
+		$categoryForm.validate({
+			
+			rules : {
+				
+				name : {
+				
+					required : true,
+					minlength : 2
+				},
+				description : {
+					required : true
+				}
+		
+			},
+			
+			messages : {
+				name : {
+					required : 'Please add the Category name',
+					minlength : 'The Category name must be more than two characters'
+				},
+				description : 'Please add the Category description'
+			},
+			errorElement : 'em',
+			errorPlacement : function(error, element){
+				//add the class of help block
+				error.addClass('help-block');
+				//add the error after the input element
+				error.insertAfter(element);
+			}
+			
+		});
+	}
+	////////////////////////////////////////////////
 	
 	
 });

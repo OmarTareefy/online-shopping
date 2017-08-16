@@ -92,7 +92,7 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-md-4" for="categoryId">Select
+							<label class="controlsubmit-label col-md-4" for="categoryId">Select
 								Category: </label>
 							<div class="col-md-8">
 								<sf:select path="categoryId" id="categoryId"
@@ -197,6 +197,33 @@
 				
 				<div class="modal-body">
 					<!-- Category Form -->
+					<sf:form id="categoryForm" class="form-horizontal" modelAttribute="category"
+						action="${contextRoot}/manage/category" method="post">
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="category_name">Category Name</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="name" id="category_name" placeholder="Category Name"
+									class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="category_description">Category Description</label>
+							<div class="col-md-8">
+								<sf:textarea cols="" rows="5" path="description" id="category_description" placeholder="Description"
+									class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" name="submit" id="category_submit" value="Add Category"
+									class="btn btn-primary" />
+							</div>
+						</div>
+						
+					</sf:form>
 				</div>
 			
 			</div>
