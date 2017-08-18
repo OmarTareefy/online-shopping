@@ -103,7 +103,7 @@ public class UserTestCase {
 		assertEquals("Error in adding a user inside the table!", true, userDAO.addUser(user));
 	}*/
 	
-	
+	/*
 	@Test
 	public void testUpdateCart(){
 		
@@ -118,6 +118,79 @@ public class UserTestCase {
 		
 		assertEquals("Error in updating the cart!", true, userDAO.updateCart(cart));
 	}
+*/
+	
+	/*
+	@Test
+	public void testAddAddress(){
+		//we need to add a user
+		
+		user = new User();
+		user.setFirstName("Omar");
+		user.setLastName("Khalil");
+		user.setEmail("omar.tareefy@gmail.com");
+		user.setContactNumber("0786501066");
+		user.setRole("USER");
+		user.setPassword("123");
+		
+		assertEquals("Error in adding a user inside the table!", true, userDAO.addUser(user));
 
+		
+		//add an address for billing
+		address = new Address();
+		address.setAddressLineOne("Amman");
+		address.setAddressLineTwo("TV and Radio street");
+		address.setCity("Amman");
+		address.setState("Amman");
+		address.setCountry("Jordan");
+		address.setPostalCode("12355");
+		address.setBilling(true);
+		
+		//Linking the address with the user using the user object
+		address.setUser(user);
+		
+		assertEquals("Error in adding a billing address inside the table!", true, userDAO.addAddress(address));
 
+		
+		//add the shipping address
+		address = new Address();
+		address.setAddressLineOne("Amman");
+		address.setAddressLineTwo("TV and Radio street");
+		address.setCity("Amman");
+		address.setState("Amman");
+		address.setCountry("Jordan");
+		address.setPostalCode("12355");
+		address.setShipping(true);
+		//link it with the user
+		address.setUser(user);
+		assertEquals("Error in shipping address inside the table!", true, userDAO.addAddress(address));
+
+	}
+	
+	@Test
+	public void testAddAddress(){
+		user = userDAO.getByEmail("omar.tareefy@gmail.com");
+		
+		address = new Address();
+		address.setAddressLineOne("Zarqa");
+		address.setAddressLineTwo("TV and Radio street");
+		address.setCity("Zarqa");
+		address.setState("Zarqa");
+		address.setCountry("Jordan");
+		address.setPostalCode("12355");
+		address.setShipping(true);
+		//link it with the user
+		address.setUser(user);
+		assertEquals("Error in shipping address inside the table!", true, userDAO.addAddress(address));
+		
+		
+
+	}*/
+	
+	@Test public void testGetAddresses(){
+		user = userDAO.getByEmail("omar.tareefy@gmail.com");
+		assertEquals("failed to fetch the list of addresses and size doesn't match ", 2, userDAO.listShippingAddresses(user).size());
+		assertEquals("failed to fetch the billing address and size doesn't match ", "Amman", userDAO.getBillingAddress(user).getAddressLineOne());
+	}
+	
 }

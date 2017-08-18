@@ -1,6 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:wf="http://www.springframework.org/schema/webflow-config"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans
@@ -9,6 +10,9 @@
    http://www.springframework.org/schema/context/spring-context.xsd
    http://www.springframework.org/schema/mvc
    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   http://www.springframework.org/schema/webflow-config
+   http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd
+   
    ">
 	<context:component-scan base-package="net.omar.onlineshopping"/>
 	<context:component-scan base-package="net.omar.shoppingbackend"/>
@@ -25,7 +29,47 @@
 	<mvc:annotation-driven/>
 	<mvc:resources location="/assets/" mapping="/resources/**"/>
 	
-	<!-- id must be multipartResolver -->
+	
+	
+	
+	<!-- WEBFLOW configuration start-->
+	<!-- Entry point for the flow -->
+	<wf:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>
+	
+	<!-- this id (flowRegistry) is for the flowExecuter that we wrote -->
+	<!-- 
+	-The id that we will use to trigger the flow will be the parent folders of the flow.xml file 
+	for example /WEB-INF/views/flows/cart/checkout/checkout-flow.xml ,, the id will be cart/checkout
+	-In case if we are not using the base-path for locating the flow, then the id will be xml file name
+	which is is checkout-flow in the above example
+	-->
+	<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/views/flows"
+		flow-builder-services="flowBuilderServices">
+		<wf:flow-location-pattern value="/**/*-flow.xml"/>
+	</wf:flow-registry>
+	
+	<wf:flow-builder-services id="flowBuilderServices"
+		view-factory-creator="viewFactoryCreator"
+	/>
+	
+	<!-- this is the bridge between the dispatcher servlet and the flow executer -->
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor"/>
+	</bean>
+	
+	<!-- this mapping helps the dispatcher servlet know to send flow requests to the FlowHandlerAdapter-->
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry"/>
+		<property name="order" value="-1"/><!-- give this handler mapping the priority if any other mapping found -->
+	</bean>
+	
+	<bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers" ref="viewResolver"/>
+	</bean>
+	<!-- WEBFLOW configuration end-->
+	
+	
+	<!-- id must be multipartResolver for uploading files-->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 		

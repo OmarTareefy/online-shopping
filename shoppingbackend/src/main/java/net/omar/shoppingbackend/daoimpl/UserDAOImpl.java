@@ -1,6 +1,8 @@
 package net.omar.shoppingbackend.daoimpl;
 
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +69,38 @@ public class UserDAOImpl implements UserDAO{
 		}
 	}
 
+	@Override
+	public Address getBillingAddress(User user) {
+		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
+		
+		try{
+			Query query = sessionFactory.getCurrentSession()
+							.createQuery(selectQuery, Address.class);
+			query.setParameter("user", user);
+			query.setParameter("billing", true);
+			Address address = (Address)query.getSingleResult();
+			return address;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Address> listShippingAddresses(User user) {
+		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
+		
+		try{
+			Query query = sessionFactory.getCurrentSession()
+							.createQuery(selectQuery, Address.class);
+			query.setParameter("user", user);
+			query.setParameter("shipping", true);
+			List <Address> addresses = query.getResultList();
+			return addresses;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
+	}
 	
 }
