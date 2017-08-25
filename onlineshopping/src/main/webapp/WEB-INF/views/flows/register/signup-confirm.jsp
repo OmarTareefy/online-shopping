@@ -67,7 +67,7 @@
 	<div class="col-sm-4 col-sm-offset-4">
 		<div class="text-center">
 			<!-- Anchor to move to the success page -->
-			<a href="${flowExecutionUrl}&_eventId_success" class="btn btn-primary">Confirm</a>
+			<a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-primary">Confirm</a>
 		</div>
 	</div>
 </div>

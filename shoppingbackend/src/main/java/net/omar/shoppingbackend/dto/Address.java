@@ -23,14 +23,18 @@ public class Address implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	/*--------------*/
-	@ManyToOne
-	private User user;
-	
-	/*--------------*/
-	
+
+	private int userId;
 	@Column(name = "address_line_one")
 	private String addressLineOne;
+	
+	public int getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	@Column(name = "address_line_two")
 	private String addressLineTwo;
 	private String city;
@@ -47,13 +51,7 @@ public class Address implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 	public String getAddressLineOne() {
 		return addressLineOne;
 	}
@@ -102,12 +100,13 @@ public class Address implements Serializable{
 	public void setBilling(boolean billing) {
 		this.billing = billing;
 	}
+
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", user=" + user + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo + ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode="
+		return "Address [id=" + id + ", userId=" + userId + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo + ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode="
 				+ postalCode + ", shipping=" + shipping + ", billing=" + billing + "]";
 	}
-	
+
 
 
 	
