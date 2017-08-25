@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<var name="user" class="net.omar.shoppingbackend.dto.User"/>
+	<var name="billing" class="net.omar.shoppingbackend.dto.Address"/>
+	
+	
+	<!-- returning and adding inside the flow a registerModel instance-->
+	<on-start>
+		<!-- we use the bean object to call init() inside RegisterHandler class and the result will be stored in registerModel flowScope-->	
+		<evaluate expression="registerHandler.init()" result="flowScope.registerModel"/>
+	</on-start>
+		
+	<!-- start state -->
+	<view-state id="personal" view="flows/register/signup-personal" model="user">
+		<transition on="billing" to="billing"/>
+		<on-exit>
+			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="billing" view="flows/register/signup-billing" model="billing">
+		<transition on="personal" to="personal"/>
+		<transition on="confirm" to="confirm"/>
+		<on-exit>
+			<evaluate expression="registerHandler.addBilling(flowScope.registerModel, billing)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="confirm" view="flows/register/signup-confirm" model="flowScope.registerModel">
+		<transition on="personal" to="personal"/>
+		<transition on="billing" to="billing"/>
+		<transition on="success" to="success"/>
+	</view-state>
+	
+	
+	<!-- end state -->
+	<end-state id="home" view="externalRedirect:contextRelative:/"/>
+	<end-state id="success" view="flows/register/signup-success"/>
+	
+	<!-- Golbal transition -->
+	<global-transitions>
+		<transition on="home" to="home"/>
+	</global-transitions>
+</flow>
