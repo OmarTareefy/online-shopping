@@ -28,7 +28,7 @@ public class HibernateConfig {
 	private static final String DATABASE_PASSWORD ="";
 	
 	
-	@Bean
+	@Bean("dataSource")//this name will match with the data-source-ref in spring-security.xml file
 	public DataSource getDataSource(){
 		
 		BasicDataSource dataSource = new BasicDataSource();

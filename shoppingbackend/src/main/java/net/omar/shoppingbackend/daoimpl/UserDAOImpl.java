@@ -70,13 +70,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public Address getBillingAddress(User user) {
-		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :user AND billing = :billing";
 		
 		try{
 			Query query = sessionFactory.getCurrentSession()
 							.createQuery(selectQuery, Address.class);
-			query.setParameter("user", user);
+			query.setParameter("userId", userId);
 			query.setParameter("billing", true);
 			Address address = (Address)query.getSingleResult();
 			return address;
@@ -87,13 +87,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public List<Address> listShippingAddresses(User user) {
-		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
+	public List<Address> listShippingAddresses(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :user AND shipping = :shipping";
 		
 		try{
 			Query query = sessionFactory.getCurrentSession()
 							.createQuery(selectQuery, Address.class);
-			query.setParameter("user", user);
+			query.setParameter("userId", userId);
 			query.setParameter("shipping", true);
 			List <Address> addresses = query.getResultList();
 			return addresses;

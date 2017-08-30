@@ -20,6 +20,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="addressLineOne" placeholder="Enter Address Line One"
 									class="form-control" />
+								<sf:errors path="addressLineOne" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -28,6 +29,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="addressLineTwo" placeholder="Enter Address Line Two"
 									class="form-control" />
+								<sf:errors path="addressLineTwo" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -36,6 +38,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="city" placeholder="City"
 									class="form-control" />
+								<sf:errors path="city" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -44,6 +47,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="state" placeholder="State"
 									class="form-control" />
+								<sf:errors path="state" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -52,6 +56,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="country" placeholder="Country"
 									class="form-control" />
+								<sf:errors path="country" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -60,6 +65,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="postalCode" placeholder="Postal Code"
 									class="form-control" />
+								<sf:errors path="postalCode" cssClass="help-block" element="em" />
 							</div>
 						</div>
 

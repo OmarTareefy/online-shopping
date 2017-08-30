@@ -1,6 +1,8 @@
 package net.omar.onlineshopping.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
 
 import net.omar.onlineshopping.model.RegisterModel;
@@ -31,6 +33,38 @@ public class RegisterHandler {
 		registerModel.setBilling(billing);
 	}
 
+	
+	public String validateUser(User user, MessageContext error){
+		String transitionValue= "success";
+		
+		
+		
+		if(!(user.getPassword().equals(user.getConfirmPassword()))){
+			
+			//checking if password matches confirm password
+			error.addMessage(new MessageBuilder()
+					.error()
+					.source("confirmPassword")
+					.defaultText("Password doesn't match the confirm password!")
+					.build());
+			
+			transitionValue = "failure";
+		}
+		
+		//check uniqueness of the email
+		if(userDAO.getByEmail(user.getEmail()) != null){
+			error.addMessage(new MessageBuilder()
+					.error()
+					.source("email")
+					.defaultText("Email address is already used")
+					.build());
+			
+			transitionValue = "failure";
+		}
+	
+		return transitionValue;
+	}
+	
 	public String saveAll(RegisterModel registerModel){
 		
 		String transitionValue = "success";

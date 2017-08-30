@@ -15,7 +15,6 @@
    
    ">
 	<context:component-scan base-package="net.omar.onlineshopping"/>
-	<context:component-scan base-package="net.omar.shoppingbackend"/>
 	
 
 	<bean id="viewResolver"
@@ -50,6 +49,7 @@
 	
 	<wf:flow-builder-services id="flowBuilderServices"
 		view-factory-creator="viewFactoryCreator"
+		validator="validator"
 	/>
 	
 	<!-- this is the bridge between the dispatcher servlet and the flow executer -->
@@ -66,6 +66,10 @@
 	<bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
 		<property name="viewResolvers" ref="viewResolver"/>
 	</bean>
+	
+	<!-- validator bean -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 	<!-- WEBFLOW configuration end-->
 	
 	
