@@ -25,6 +25,22 @@ $(function() {
 		break;
 	}
 
+	
+	// to tackle the csrf token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if(token.length > 0 && header.length > 0){
+		// set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(header, token);
+			
+		});
+	}
+	
+	
+	
+	
 	// code for jquery dataTabke
 
 	var $table = $('#productListTable');
@@ -89,12 +105,15 @@ $(function() {
 									var str = '';
 									str += '<a href="'+ window.contextRoot+ '/show/'+ data + '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;'
 									
-									if(row.quantity < 1){
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>'
+									if(userRole == 'ADMIN'){
+										str += '<a href="'+ window.contextRoot+ '/manage/'+ data + '/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>'
 									}else {
-										str += '<a href="'+ window.contextRoot+ '/cart/add/'+ data + '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>'
+										if(row.quantity < 1){
+											str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>'
+										}else {
+											str += '<a href="'+ window.contextRoot+ '/cart/add/'+ data + '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>'
+										}
 									}
-									
 									
 									return str;
 								}
@@ -282,6 +301,46 @@ $(function() {
 	}
 	////////////////////////////////////////////////
 	
+	
+	// Validation code for Login 
+	var $loginForm = $('#loginForm');
+	
+	if ($loginForm.length) {
+		$loginForm.validate({
+			
+			rules : {
+				
+				username : {
+				
+					required : true,
+					email : true
+				},
+				password : {
+					required : true
+				}
+		
+			},
+			
+			messages : {
+				username : {
+					required : 'Please enter the username!',
+					email : 'Please enter valid email address'
+				},
+				password: {
+					required : 'Please enter the Password'
+				}
+			},
+			errorElement : 'em',
+			errorPlacement : function(error, element){
+				//add the class of help block
+				error.addClass('help-block');
+				//add the error after the input element
+				error.insertAfter(element);
+			}
+			
+		});
+	}
+	////////////////////////////////////////////////
 	
 });
 

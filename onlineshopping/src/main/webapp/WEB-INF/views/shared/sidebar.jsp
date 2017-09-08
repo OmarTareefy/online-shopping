@@ -1,5 +1,5 @@
 
-<p class="lead">Shop Name</p>
+<p class="lead"><spring:message code="caption.omar"/></p>
 <div class="list-group">
 
 

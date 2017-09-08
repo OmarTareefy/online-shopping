@@ -33,7 +33,7 @@
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
 <!-- Bootstrap Solar theme CSS -->
-<link href="${css}/bootstrap-flaty-theme.css" rel="stylesheet">
+<link href="${css}/bootstrap-slate-theme.css" rel="stylesheet">
 
 <!-- DataTables Bootstrap -->
 <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">

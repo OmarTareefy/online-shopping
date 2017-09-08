@@ -20,7 +20,7 @@ CREATE TABLE user_detail (
 	last_name VARCHAR(50),
 	role VARCHAR(50),
 	enabled BOOLEAN,
-	password VARCHAR(50),
+	password VARCHAR(60),
 	email VARCHAR(100),
 	contact_number VARCHAR(15),	
 	CONSTRAINT pk_user_id PRIMARY KEY(id),
@@ -29,15 +29,15 @@ CREATE TABLE user_detail (
 
 INSERT INTO user_detail
 (first_name, last_name, role, enabled, password, email, contact_number)
-VALUES ('Omar', 'Khalil', 'ADMIN', true, 'admin', 'omar.tareefy@hotmail.com', '00962786501066');
+VALUES ('Omar', 'Khalil', 'ADMIN', true, '$2a$06$mNMX2ZBY.DJQ4vdImxmX/.tChUcQ4RvBIZ3u0l5RRmWTARQH/tlra', 'omar.tareefy@hotmail.com', '00962786501066');
 
 INSERT INTO user_detail
 (first_name, last_name, role, enabled, password, email, contact_number)
-VALUES ('Ahmad', 'Ali', 'SUPPLIER', true, '12345', 'aa@hotmail.com', '8888888888888');
+VALUES ('Ahmad', 'Ali', 'SUPPLIER', true, '$2a$06$iLmZ55BkVj9rvHfTJ4laA.LyPuxZGSSOHJTW8Sgxq0HUX39.J104a', 'aa@hotmail.com', '8888888888888');
 
 INSERT INTO user_detail
 (first_name, last_name, role, enabled, password, email, contact_number)
-VALUES ('Mosa', 'Luay', 'SUPPLIER', true, '12345', 'ml@hotmail.com', '888888888888');
+VALUES ('Mosa', 'Luay', 'SUPPLIER', true, '$2a$06$m/CzjfYFPgrMz51kEeKd.uaNDEDjehwIi5jujbX2fi9UHVijICxBW', 'ml@hotmail.com', '888888888888');
 
 CREATE TABLE product (
 	id IDENTITY,
